@@ -1,0 +1,1 @@
+// const qtddeCartas = prompt("Insira a quantidade de cartas:");
