@@ -35,13 +35,14 @@
 
 .cartas{
     margin-top: 13px;
-    width: 1100px;
+    width: 1000px;
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
 }
 
-.carta-atras{
+.carta{
     width: 117px;
     height: 146px;
     background-color: #A7E9AF;
@@ -54,9 +55,30 @@
     margin-top: 34px;
 }
 
-.carta-atras img{
+.carta img{
     width: 100px;
     height: 100px;
+    position: absolute;
+}
+
+.escondido{
+    display: none;
+}
+
+.painel{
+    position: absolute;
+    width: 120px;
+    padding: 10px;
+    right: 0px;
+    top: 0px;
+    background-color: #2c2d2c;
+    opacity: 0.7;
+}
+
+.cronometro{
+    float: left;
+    font-size: 20px;
+    color: #75B79E;
 }
 
 @media (max-width: 614px){
