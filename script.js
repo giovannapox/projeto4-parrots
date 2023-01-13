@@ -93,6 +93,7 @@ function virarCarta(cartaSelecionada){
 function finalizarJogo(){
     if(quantidade/2 === acertos){
         alert(`Você ganhou em ${contadorJogadas} jogadas! A duração do jogo foi de ${tempo} segundos!`)
+        reiniciarJogo();
     }
 }
 
@@ -105,9 +106,22 @@ let cronometro = setInterval(function(){
     document.getElementById('cronometro').innerHTML = tempo;
     if(quantidade/2 === acertos){
         clearInterval(cronometro);
-        contadorPartida++;
     }
 
 }, 1000)
 
+
+function reiniciarJogo(){
+    resposta = prompt("Gostaria de reiniciar a partida? (sim ou não)");  
+
+    while (resposta !== 'não' && resposta !== 'sim'){ 
+        resposta = prompt("Gostaria de reiniciar a partida? (sim ou não)"); 
+     } 
+
+    if (resposta === 'sim'){
+        location.reload();
+    } else if (resposta === 'não'){
+
+    } 
+}
 
