@@ -2,10 +2,15 @@ const cartas = ["bobrossparrot", "explodyparrot",
 "fiestaparrot", "metalparrot", "revertitparrot", 
 "tripletsparrot", "unicornparrot"];
 let quantidade;
+let acertos = 0;
+let erros = 0;
 qtdadeCartas();
 
 const baralho = [];
 let contadorBaralho = 0;
+
+let primeiraCarta;
+let segundaCarta;
 
 while(contadorBaralho < quantidade/2){
     baralho.push(cartas[contadorBaralho]);
@@ -43,8 +48,52 @@ while (contador < quantidade){
     contador++;
 }
 
+function redefineCarta(){
+    primeiraCarta = undefined;
+    segundaCarta = undefined;
+}
+
+function desvirarCarta(){
+    primeiraCarta.classList.remove('virarCarta');
+    segundaCarta.classList.remove('virarCarta');
+
+    redefineCarta();
+}
+
+let contadorJogadas = 0;
+
 function virarCarta(cartaSelecionada){
+
+    contadorJogadas++;
+    if (cartaSelecionada.classList.contains('virarCarta')){
+        return;
+    } if(primeiraCarta !== undefined && segundaCarta !== undefined) {
+        return;
+    }
+
     cartaSelecionada.classList.add('virarCarta');
+
+    if(primeiraCarta === undefined){
+        primeiraCarta = cartaSelecionada;
+    } else {
+        if(segundaCarta === undefined){
+            segundaCarta = cartaSelecionada;
+            if(primeiraCarta.innerHTML === segundaCarta.innerHTML){
+                acertos++;
+                console.log(acertos);
+                redefineCarta();
+                setTimeout(finalizarJogo, 300);
+            } else {
+                setTimeout(desvirarCarta, 1000);
+            }
+        }
+    }
+}
+
+function finalizarJogo(){
+    if(quantidade/2 === acertos){
+        alert(`Você ganhou em ${contadorJogadas} jogadas! A duração do jogo foi de ${tempo} segundos!`)
+    }
 }
 
 let tempo = 0;
@@ -54,13 +103,11 @@ let cronometro = setInterval(function(){
     tempo ++
     
     document.getElementById('cronometro').innerHTML = tempo;
+    if(quantidade/2 === acertos){
+        clearInterval(cronometro);
+        contadorPartida++;
+    }
 
 }, 1000)
 
-//alert(`Você ganhou em ${} jogadas! A duração do jogo foi de ${tempo} segundos!`)
-//let resposta = prompt("Gostaria de reiniciar a partida?")
 
-/*if(resposta === 'sim'){
-    qtdadeCartas();
-} else if (resposta === 'não') {
-}*/
