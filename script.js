@@ -32,20 +32,35 @@ baralho.sort(comparador);
 
 while (contador < quantidade){
     divCarta.innerHTML = `<div data-test="card" class="carta" onclick="virarCarta(this)">
-        <img data-test="face-down-image" class="atras" src="imagens/back.png" />
-        <img data-test="face-up-image" class="frente" src="imagens/${baralho[contador]}.gif" />
+        <div class="face front-face">
+            <img data-test="face-down-image" src="imagens/back.png" />
+        </div>
+        <div class="face back-face">
+            <img data-test="face-up-image" src="imagens/${baralho[contador]}.gif" />
+        </div>
     </div>` + divCarta.innerHTML;
 
     contador++;
+}
+
+function virarCarta(cartaSelecionada){
+    cartaSelecionada.classList.add('virarCarta');
 }
 
 let tempo = 0;
 
 let cronometro = setInterval(function(){
 
-    tempo += 1
+    tempo ++
     
-    document.getElementById('cronometro').innerHTML = tempo
+    document.getElementById('cronometro').innerHTML = tempo;
 
 }, 1000)
 
+//alert(`Você ganhou em ${} jogadas! A duração do jogo foi de ${tempo} segundos!`)
+//let resposta = prompt("Gostaria de reiniciar a partida?")
+
+/*if(resposta === 'sim'){
+    qtdadeCartas();
+} else if (resposta === 'não') {
+}*/
